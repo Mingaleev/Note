@@ -1,6 +1,7 @@
 package com.minga.android_note;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
 
@@ -19,6 +22,7 @@ public class NotesFragment extends Fragment {
     ArrayList<SimpleNote> simpleNotes = new ArrayList<>();
     private SimpleNote simpleNote;
     private static final String ARG_NOTE = "note";
+    private boolean isLandscape;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,18 +57,49 @@ public class NotesFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     simpleNote = new SimpleNote(simpleNotes.get(fi).getTitle()
-                            ,simpleNotes.get(fi).getDesc()
-                            ,simpleNotes.get(fi).getDate());
-                    showPortNote(simpleNote);
+                            , simpleNotes.get(fi).getDesc()
+                            , simpleNotes.get(fi).getDate());
+                    showNotes(simpleNote);
                 }
 
             });
         }
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        isLandscape = getResources().getConfiguration().orientation
+                == Configuration.ORIENTATION_LANDSCAPE;
+
+        if (isLandscape) {
+            showLandNote(simpleNotes.get(0));
+        }
+    }
+
+    private void showNotes(SimpleNote simpleNote) {
+        if (isLandscape) {
+            showLandNote(simpleNote);
+        } else {
+            showPortNote(simpleNote);
+        }
+    }
+
+    private void showLandNote(SimpleNote simpleNote) {
+        NotesBlankFragment detail = NotesBlankFragment.newInstanse(simpleNote);
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.notes, detail);
+
+        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        fragmentTransaction.commit();
+
+    }
+
     private void showPortNote(SimpleNote simpleNote) {
         Intent intent = new Intent();
-        intent.setClass(getActivity(),NotesActivity.class);
+        intent.setClass(getActivity(), NotesActivity.class);
         intent.putExtra(NotesFragment.ARG_NOTE, simpleNote);
         startActivity(intent);
     }

@@ -12,7 +12,7 @@ public class NotesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes);
 
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             finish();
             return;
         }
@@ -22,7 +22,7 @@ public class NotesActivity extends AppCompatActivity {
             details.setArguments(getIntent().getExtras());
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.fragment_container,details).commit();
+                    .replace(R.id.fragment_container, details).commit();
         }
     }
 }

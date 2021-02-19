@@ -8,17 +8,17 @@
 
     <TextView
         android:id="@+id/tv_title"
-        android:textSize="@dimen/text_size_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:textSize="@dimen/text_size_title" />
 
     <TextView
         android:id="@+id/tv_date"
-        android:textSize="@dimen/text_size_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:textSize="@dimen/text_size_date" />
 
     <EditText
         android:id="@+id/desc"
