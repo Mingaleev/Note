@@ -8,6 +8,30 @@ class SimpleNote implements Parcelable {
     private String desc;
     private String date;
 
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     public SimpleNote(String title, String desc, String date) {
         this.title = title;
         this.desc = desc;
