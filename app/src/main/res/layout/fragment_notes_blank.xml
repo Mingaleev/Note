@@ -22,9 +22,9 @@
 
     <EditText
         android:id="@+id/desc"
-        android:textSize="@dimen/text_size_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="20"/>
+        android:layout_weight="20"
+        android:textSize="@dimen/text_size_desc" />
 
 </LinearLayout>

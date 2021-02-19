@@ -5,8 +5,8 @@ import android.os.Parcelable;
 
 class SimpleNote implements Parcelable {
     private String title;
-    private String desc;
     private String date;
+    private String desc;
 
     public String getTitle() {
         return title;
@@ -34,8 +34,8 @@ class SimpleNote implements Parcelable {
 
     public SimpleNote(String title, String desc, String date) {
         this.title = title;
-        this.desc = desc;
         this.date = date;
+        this.desc = desc;
     }
 
     protected SimpleNote(Parcel in) {

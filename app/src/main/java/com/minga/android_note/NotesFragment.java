@@ -1,5 +1,6 @@
 package com.minga.android_note;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 public class NotesFragment extends Fragment {
 
     ArrayList<SimpleNote> simpleNotes = new ArrayList<>();
+    private SimpleNote simpleNote;
     private static final String ARG_NOTE = "note";
 
     @Override
@@ -46,7 +48,25 @@ public class NotesFragment extends Fragment {
             tv.setTextSize(40);
             tv.setPadding(32, 16, 16, 0);
             layoutView.addView(tv);
+            final int fi = i;
+            tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    simpleNote = new SimpleNote(simpleNotes.get(fi).getTitle()
+                            ,simpleNotes.get(fi).getDesc()
+                            ,simpleNotes.get(fi).getDate());
+                    showPortNote(simpleNote);
+                }
+
+            });
         }
+    }
+
+    private void showPortNote(SimpleNote simpleNote) {
+        Intent intent = new Intent();
+        intent.setClass(getActivity(),NotesActivity.class);
+        intent.putExtra(NotesFragment.ARG_NOTE, simpleNote);
+        startActivity(intent);
     }
 
     private void initNotes() {

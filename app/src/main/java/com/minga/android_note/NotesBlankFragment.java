@@ -38,8 +38,10 @@ public class NotesBlankFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_notes_blank, container, false);
         TextView tv_title = view.findViewById(R.id.tv_title);
         tv_title.setText(simpleNote.getTitle());
+
         TextView tv_date = view.findViewById(R.id.tv_date);
-        tv_title.setText(simpleNote.getDate());
+        tv_date.setText(simpleNote.getDate());
+
         EditText et_desc = view.findViewById(R.id.desc);
         et_desc.setText(simpleNote.getDesc());
         return view;
