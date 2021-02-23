@@ -46,9 +46,9 @@ class SimpleNote implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(title);
-        dest.writeString(desc);
-        dest.writeString(date);
+        dest.writeString(getTitle());
+        dest.writeString(getDesc());
+        dest.writeString(getDate());
     }
 
     @Override

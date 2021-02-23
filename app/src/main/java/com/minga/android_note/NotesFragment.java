@@ -67,14 +67,26 @@ public class NotesFragment extends Fragment {
     }
 
     @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putParcelable(ARG_NOTE,simpleNote);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
         isLandscape = getResources().getConfiguration().orientation
                 == Configuration.ORIENTATION_LANDSCAPE;
 
+        if (savedInstanceState != null) {
+            simpleNote = savedInstanceState.getParcelable(ARG_NOTE);
+        } else {
+            simpleNote = simpleNotes.get(0);
+        }
+
         if (isLandscape) {
-            showLandNote(simpleNotes.get(0));
+            showLandNote(simpleNote);
         }
     }
 
