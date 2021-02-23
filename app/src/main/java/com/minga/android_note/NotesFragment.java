@@ -50,7 +50,11 @@ public class NotesFragment extends Fragment {
             TextView tv = new TextView(getContext());
             tv.setText(note_title);
             tv.setTextSize(40);
-            tv.setPadding(32, 16, 16, 0);
+
+            tv.setPadding(getResources().getDimensionPixelSize(R.dimen.padding_left),
+                    getResources().getDimensionPixelSize(R.dimen.padding_top),
+                    getResources().getDimensionPixelSize(R.dimen.padding_right),
+                    getResources().getDimensionPixelSize(R.dimen.padding_bottom));
             layoutView.addView(tv);
             final int fi = i;
             tv.setOnClickListener(new View.OnClickListener() {
